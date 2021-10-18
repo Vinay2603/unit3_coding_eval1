@@ -92,7 +92,7 @@
         let container = document.getElementById('container')
         async function headlines(){
       try{
-        let res = await fetch(`https://newsapi.org/v2/top-headlines?q=Apple&from=2021-10-18&sortBy=popularity&apiKey=e2b7fa94934d4a69a12a8763dc9c3b2c`)
+        let res = await fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=e2b7fa94934d4a69a12a8763dc9c3b2c`)
 
         let data = await res.json()
 
