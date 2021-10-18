@@ -13,9 +13,17 @@
             height: 50px;
             background-color: blueviolet;
         }
+        #h1{
+            
+            text-align: start;
+            width:400px
+        }
+        #sbox{
+            align-items: flex-end;
+        }
         #search{
-           justify-items:  space-between ;
-           visibility: inherit;
+            
+           border-radius: 2px;
         }
 #container{
     border: 1px solid black;
@@ -46,10 +54,10 @@
 </head>
 <body>
     <div id="namebar">
-        <div>
-        <h1>REDDIT BULLET NEWS</h1>
-    </div>
-        <div>
+        <div id="h1">
+        <h1 >REDDIT BULLET NEWS</h1>
+        </div>
+        <div id="sbox">
         <input type="text" placeholder="Latest News" id="search">
          <button onclick="seachNews()">Search</button>
         </div>
