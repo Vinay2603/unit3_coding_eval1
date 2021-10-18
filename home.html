@@ -43,7 +43,7 @@
    
 }
 .sub1div{
-  
+   
     gap: 12px
 }
 .inner1div{
@@ -115,7 +115,7 @@
 
             let div = document.createElement('div')
            div.setAttribute('class','sub1div')
-           div.addEventListener('click',goto)
+           div.addEventListener('click',goto(news))
         
            let div1 = document.createElement('div')
            div.setAttribute('class','inner1div')
@@ -130,7 +130,7 @@
 
 
            let content = document.createElement('p')
-           content.innerText = news.content
+           content.innerText = news.description
   
            div2.append( content)
 
@@ -202,9 +202,15 @@ async function seachNews(){
 
 
      function goto(news){
+        if(localStorage.getItem('eventNews') === null){
 
-console.log(news)
-console.log('23:', 23)
+        localStorage.setItem('eventNews',JSON.stringify([])  )
+      }
+     let eventNews = JSON.parse(localStorage.getItem('eventNews'))
+
+     eventNews.push(news)
+
+     localStorage.setItem('eventNews',JSON.stringify(eventNews))
      }
     </script>
 </body>
