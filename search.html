@@ -35,6 +35,7 @@
 </head>
 <body>
     <h1>YOUR SEARCH RESULT</h1>
+    <button onclick="clearlocal()">back</button>
     <div id="container">
 
     </div>
@@ -91,7 +92,12 @@ function appendHeadlines(search_news){
 appendHeadlines(search_news)
 
 
-
+function clearlocal(){
+     //  localStorage.searchnews = undefined 
+     localStorage.removeItem('searchnews')
+   //  search_news = null
+      console.log(searchnews)
+}
 
 
 
