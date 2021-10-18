@@ -15,6 +15,7 @@
         }
         #search{
            justify-items:  space-between ;
+           visibility: inherit;
         }
 #container{
     border: 1px solid black;
@@ -45,9 +46,13 @@
 </head>
 <body>
     <div id="namebar">
+        <div>
         <h1>REDDIT BULLET NEWS</h1>
+    </div>
+        <div>
         <input type="text" placeholder="Latest News" id="search">
          <button onclick="seachNews()">Search</button>
+        </div>
     </div>
     <div  id="container">
 
