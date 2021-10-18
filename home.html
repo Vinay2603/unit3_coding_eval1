@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="namebar">
+        <h1>News</h1>
+        <input type="text" placeholder="Latest News" id="search">
+         <button onclick="seachNews(e)">Search</button>
+    </div>
+    <div  id="container">
+
+    </div>
+    <script>
+        //api- e2b7fa94934d4a69a12a8763dc9c3b2c
+        //https://newsapi.org/v2/everything?q=Apple&from=2021-10-18&sortBy=popularity&apiKey=e2b7fa94934d4a69a12a8763dc9c3b2c
+     async function headlines(){
+      try{
+        let res = await fetch(`https://newsapi.org/v2/everything?q=Apple&from=2021-10-18&sortBy=popularity&apiKey=e2b7fa94934d4a69a12a8763dc9c3b2c`)
+
+        let data = await res.json()
+
+        console.log('data:', data)
+      }
+      catch(e){
+         console.log('e:', e)
+      }
+
+     }
+
+     headlines()
+
+
+     fetch('https://newsapi.org/')
+     .then((res)=>{
+         res.json()
+     })
+     .then((res)=>{
+          console.log('res:', res)
+     })
+     .catch((err)=>{
+         console.log('err:', err)
+     })
+
+
+
+    </script>
+</body>
+</html>
