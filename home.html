@@ -6,14 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-
+        #namebar{
+            display: flex;
+        }
+        #search{
+           justify-items: flex-end;
+        }
+#container{
+    border: 1px solid black;
+    display: flex;
+    flex-wrap: wrap;
+   
+}
+#sub1div{
+    display: flex;
+    margin: 5%;
+}
+#inner1div{
+    border: 1px solid black;
+    width: 30%;
+}
+#inner2div{
+    border: 1px solid black;
+    width: 30%;
+}
+#inner3div{
+    border: 1px solid black;
+    width: 30%;
+}
+#img{
+    max-width: 100%;
+}
     </style>
 </head>
 <body>
     <div id="namebar">
-        <h1>News</h1>
+        <h1>REDDIT BULLET NEWS</h1>
         <input type="text" placeholder="Latest News" id="search">
-         <button onclick="seachNews(e)">Search</button>
+         <button onclick="seachNews()">Search</button>
     </div>
     <div  id="container">
 
@@ -21,13 +51,17 @@
     <script>
         //api- e2b7fa94934d4a69a12a8763dc9c3b2c
         //https://newsapi.org/v2/everything?q=Apple&from=2021-10-18&sortBy=popularity&apiKey=e2b7fa94934d4a69a12a8763dc9c3b2c
-     async function headlines(){
+     
+        let container = document.getElementById('container')
+        async function headlines(){
       try{
-        let res = await fetch(`https://newsapi.org/v2/everything?q=Apple&from=2021-10-18&sortBy=popularity&apiKey=e2b7fa94934d4a69a12a8763dc9c3b2c`)
+        let res = await fetch(`https://newsapi.org/v2/top-headlines?q=Apple&from=2021-10-18&sortBy=popularity&apiKey=e2b7fa94934d4a69a12a8763dc9c3b2c`)
 
         let data = await res.json()
 
-        console.log('data:', data)
+        console.log('data:', data.articles)
+        appendHeadlines(data.articles)
+
       }
       catch(e){
          console.log('e:', e)
@@ -37,20 +71,103 @@
 
      headlines()
 
-
-     fetch('https://newsapi.org/')
-     .then((res)=>{
-         res.json()
-     })
-     .then((res)=>{
-          console.log('res:', res)
-     })
-     .catch((err)=>{
-         console.log('err:', err)
-     })
+    function appendHeadlines(newstotal){
 
 
+        newstotal.forEach((news)=>{
+            let div = document.createElement('div')
+           div.setAttribute('id','sub1div')
+           div.addEventListener('click',goto)
+        
+           let div1 = document.createElement('div')
+           div.setAttribute('id','inner1div')
 
+          let title = document.createElement('h3')
+          title.innerText = news.title
+
+          div1.append(title)
+            
+          let div2 = document.createElement('div')
+           div.setAttribute('id','inner2div')
+
+
+           let content = document.createElement('p')
+           content.innerText = news.content
+  
+           div2.append( content)
+
+           let div3 = document.createElement('div')
+           div.setAttribute('id','inner3div')
+
+           let img = document.createElement('img')
+           img.src = news.urlToImage
+           img.setAttribute('id','img')
+
+           div2.append( img)
+
+           div.append(div1,div2,div3)
+
+           container.append(div)
+        })
+      
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+////////////  search - news ///////////
+async function seachNews(){
+    let input = document.getElementById('search').value
+      try{
+        let res = await fetch(`https://newsapi.org/v2/top-headlines?q=${input}&from=2021-10-18&sortBy=popularity&apiKey=e2b7fa94934d4a69a12a8763dc9c3b2c`)
+
+        let data = await res.json()
+
+         console.log('data:', data.articles)
+        
+         tolocalStorage(data.articles)
+
+         window.location.href  = 'search.html'
+      }
+      catch(e){
+         console.log('e:', e)
+      }
+
+     }
+
+    
+    function  tolocalStorage(data_articles){
+            
+
+        if(localStorage.getItem('searchnews') === null){
+
+            localStorage.setItem('searchnews',JSON.stringify(data_articles))
+         }
+        
+   
+
+     }
+
+
+
+
+     ///////////////////////goto /////////////////
+
+
+     function goto(news){
+
+console.log(news)
+console.log('23:', 23)
+     }
     </script>
 </body>
 </html>

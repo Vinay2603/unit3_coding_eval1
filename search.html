@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+#container{
+    border: 1px solid black;
+    display: flex;
+    flex-wrap: wrap;
+   
+}
+#sub1div{
+    display: flex;
+    margin: 5%;
+}
+#inner1div{
+    border: 1px solid black;
+    width: 30%;
+}
+#inner2div{
+    border: 1px solid black;
+    width: 30%;
+}
+#inner3div{
+    border: 1px solid black;
+    width: 30%;
+}
+#img{
+    max-width: 100%;
+}
+    </style>
+</head>
+<body>
+    <h1>YOUR SEARCH RESULT</h1>
+    <div id="container">
+
+    </div>
+    <script>
+
+let search_news = JSON.parse(localStorage.getItem('searchnews'))
+
+//console.log(search_news)
+
+function appendHeadlines(search_news){
+
+
+    search_news.forEach((news)=>{
+    let div = document.createElement('div')
+   div.setAttribute('id','sub1div')
+
+
+   let div1 = document.createElement('div')
+   div.setAttribute('id','inner1div')
+
+  let title = document.createElement('h3')
+  title.innerText = news.title
+
+  div1.append(title)
+    
+  let div2 = document.createElement('div')
+   div.setAttribute('id','inner2div')
+
+
+   let content = document.createElement('p')
+   content.innerText = news.content
+
+   div2.append( content)
+
+   let div3 = document.createElement('div')
+   div.setAttribute('id','inner3div')
+
+   let img = document.createElement('img')
+   img.src = news.urlToImage
+   img.setAttribute('id','img')
+
+   div2.append( img)
+
+   div.append(div1,div2,div3)
+
+   container.append(div)
+})
+
+
+
+
+}
+
+appendHeadlines(search_news)
+
+
+
+
+
+
+    </script>
+</body>
+</html>
