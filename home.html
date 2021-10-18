@@ -6,17 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        
+        *{
+            box-sizing: border-box;
+        }
         #namebar{
             border: 1px solid black;
             display: flex;
             height: 50px;
             background-color: blueviolet;
+            align-items: center;
         }
         #h1{
-            
+           
             text-align: start;
-            width:400px
+            width:400px;
+            vertical-align: middle;
+
+        }
+        #top{
+            vertical-align: top;
         }
         #sbox{
             position: relative;
@@ -24,7 +32,7 @@
         }
         #search{
             
-           border-radius: 2px;
+           border-radius: 10px;
         }
 #container{
     border: 1px solid black;
@@ -33,16 +41,20 @@
    
 }
 #sub1div{
-    display: flex;
-    margin: 5%;
+    
+    display: grid;
+    grid-template-columns: 20% 20% 20%;
+   
 }
 #inner1div{
     border: 1px solid black;
     width: 30%;
+    padding: 1%;
 }
 #inner2div{
     border: 1px solid black;
     width: 30%;
+    padding: 1%;
 }
 #inner3div{
     border: 1px solid black;
@@ -56,13 +68,14 @@
 <body>
     <div id="namebar">
         <div id="h1">
-        <h1 >REDDIT BULLET NEWS</h1>
+        <h2 id='top'>REDDIT BULLET NEWS</h2>
         </div>
         <div id="sbox">
         <input type="text" placeholder="Latest News" id="search">
          <button onclick="seachNews()">Search</button>
         </div>
     </div>
+    <h3>THE LATEST NEWS</h3>
     <div  id="container">
 
     </div>
@@ -93,6 +106,7 @@
 
 
         newstotal.forEach((news)=>{
+
             let div = document.createElement('div')
            div.setAttribute('id','sub1div')
            div.addEventListener('click',goto)
